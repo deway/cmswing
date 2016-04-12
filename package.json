@@ -1,0 +1,32 @@
+{
+  "name": "CmsWing",
+  "description": "application created by thinkjs",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node www/development.js",
+    "compile": "babel --presets es2015-loose,stage-1 --plugins transform-runtime src/ --out-dir app/ --source-maps",
+    "watch-compile": "node -e \"console.log('<npm run watch-compile> no longer need, use <npm start> command direct.');console.log();\"",
+    "watch": "npm run watch-compile"
+  },
+  "dependencies": {
+    "babel-runtime": "6.x.x",
+    "geetest": "*",
+    "node-crontab": "*",
+    "nunjucks": "^2.2.0",
+    "pingpp": "*",
+    "source-map-support": "^0.4.0",
+    "tar.gz": "^1.0.2",
+    "think-pagination": "*",
+    "think-wechat": "*",
+    "thinkjs": "2.2.x",
+    "wechat-api": "^1.20.0",
+    "jimp":"*"
+  },
+  "devDependencies": {
+    "babel-cli": "6.x.x",
+    "babel-preset-es2015-loose": "6.x.x",
+    "babel-preset-stage-1": "6.x.x",
+    "babel-plugin-transform-runtime": "6.x.x",
+    "babel-core": "6.x.x"
+  }
+}

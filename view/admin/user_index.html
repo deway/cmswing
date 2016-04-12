@@ -1,0 +1,114 @@
+{% extends "./inc/base.html" %}
+{% block style%}
+<link rel="stylesheet" href="/static/admin/js/datatables/datatables.css" type="text/css"/>
+{% endblock %}
+{% block content %}
+    <section class="hbox stretch">
+
+        <aside id="asideres" class="aside-lg bg-light b-r hide">
+            <div class="wrapper">
+                <h4 class="m-t-none">新增用户 </h4>
+                <form data-validate="" id="register">
+                    <div class="form-group">
+                        <label>用户名称 <i class="fa fa-info-sign text-xs text-muted">用户名会作为默认的昵称</i></label>
+                        <input type="text" name="username" class="input-sm form-control" placeholder="用户名称" data-required="true" data-Remote="/admin/user/parsley">
+                    </div>
+                    <div class="form-group">
+                        <label>密码 <i class="fa fa-info-sign text-xs text-muted">用户密码不能少于6位</i></label>
+                        <input type="text" name="password" class="datepicker input-sm form-control" placeholder="密码" data-required="true" id="pwd">
+                    </div>
+                    <div class="form-group">
+                        <label>确认密码</label>
+                        <input type="text" class="input-sm form-control" placeholder="再输一次" data-equalto="#pwd" data-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱 <i class="fa fa-info-sign text-xs text-muted">用户邮箱，用于找回密码等安全操作</i></label>
+                        <input type="text" name="email" class="form-control" data-type="email" data-required="true"  data-Remote="/admin/user/parsley">
+                    </div>
+                    <div class="form-group" >
+                        <label>用户类型 <i class="fa fa-info-sign text-xs text-muted">选择前台用户不能登陆后台管理。</i></label>
+                        <div>
+                            <label class="radio-inline i-checks">
+                                <input type="radio" value="0" name="is_admin" checked><i></i> 前台
+                            </label><label class="radio-inline i-checks">
+                            <input type="radio" value="1" name="is_admin"><i></i> 后台
+                        </label>
+                            <div class="btn-group hide is_admin_group">
+                                <button class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="dropdown-label">选择用户组</span>
+                                    <span class="caret"></span>
+                                </button>
+
+                                <ul class="dropdown-menu dropdown-select">
+                                    {%for val in role %}
+                                    <li class=""><input type="radio" name="role_id" value="{{val.id}}"><a href="#">{{val.desc}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-lg"><button class="btn btn-lg btn-default" id="btn">添加用户</button></div>
+                </form>
+            </div>
+        </aside>
+    <aside>
+    <section class="vbox">
+        <header class="header bg-light dk">
+            <div class="btn-group pull-right">
+                <a href="#asideres" class="btn btn-sm btn-default" data-toggle="class:show">
+                    <i class="fa fa-plus text"></i>
+                    <span class="text">添加用户</span>
+                    <i class="fa fa-minus text-active"></i>
+                    <span class="text-active">添加完成</span>
+                </a>
+                <button class="btn btn-default btn-sm" type="button"><i class="fa fa-check-square-o"></i> 启用</button>
+                <button class="btn btn-default btn-sm" type="button"><i class="fa fa-minus-square-o"></i> 禁用</button>
+                <button class="btn btn-default btn-sm" type="button"><i class="fa fa-trash-o"></i> 删除</button>
+
+            </div>
+            <p>用户管理</p>
+        </header>
+        <section class="scrollable wrapper">
+            <section class="panel panel-default">
+                <header class="panel-heading">
+                    用户列表
+                    <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
+
+                </header>
+                <div class="table-responsive">
+                    <table class="table  table-hover m-b-none" data-ride="datatables">
+                        <thead >
+                        <tr class="active">
+                            <th ><label class="checkbox m-n i-checks"><input type="checkbox"><i></i></label></th>
+                            <th  >UID</th>
+                            <th  >用户名</th>
+                            <th  >真实姓名</th>
+                            <th  >积分</th>
+                            <th  >登陆次数</th>
+                            <th  >最后登陆时间</th>
+                            <th  >最后登陆IP</th>
+
+                            <th  >会员等级</th>
+                            <th  >账户余额</th>
+                            <th  >状态</th>
+                            <th  >操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </section>
+    </aside>
+    </section>
+{% endblock%}
+
+{% block script%}
+<script src="/static/admin/js/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/admin/js/datatables/jquery.csv-0.71.min.js"></script>
+<script src="/static/admin/js/parsley/parsley.min.js"></script>
+<script src="/static/admin/js/parsley/parsley.extend.js"></script>
+<script src="/static/admin/js/datatables/demo.js"></script>
+{% endblock %}
